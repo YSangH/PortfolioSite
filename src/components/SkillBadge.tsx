@@ -29,14 +29,25 @@ export default function SkillBadge({
   skillImg,
   backgroundColor,
 }: BadgeProps) {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  // 해당 애니메이션 타이머 지정
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1900); // 애니메이션 시작 지연 시간과 일치하도록 설정
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Card
       sx={{
         minWidth: 100,
-        maxWidth: 200,
+        maxWidth: 250,
         height: 60,
-        animation: `${slideInTop} 0.8s ease-out`,
-        display: "flex", // Flexbox 적용
+        animation: isVisible ? `${slideInTop} 0.8s ease-out` : `none`,
+        display: isVisible ? "flex" : "none", // Flexbox 적용
         alignItems: "center", // 세로 정렬
         padding: 2, // 내부 패딩 추가
         boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)", // 전 방향 그림자
