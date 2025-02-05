@@ -31,8 +31,8 @@ export default function InfoCard({ title, content, imageSrc }: InfoCardProps) {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 1900); // 애니메이션 시작 지연 시간과 일치하도록 설정
-
+    }, 2400); // 애니메이션 시작 지연 시간과 일치하도록 설정
+    // 2400 = 2.4초로 설정한 이유 : Title.tsx의 애니메이션 시간 이후 동작하게 하기 위해서
     return () => clearTimeout(timer);
   }, []);
 

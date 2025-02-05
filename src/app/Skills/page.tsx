@@ -24,7 +24,7 @@ export default function Skills() {
             padding: 4,
             // display: "flex",
             display: "grid",
-            gridTemplateColumns: "repeat(4, 3fr)", // 4열 그리드
+            gridTemplateColumns: "repeat(4, 3fr)", // 4열 3행 그리드
             rowGap: "10px", // 카드 간 간격
             justifyContent: "center", // 중앙 정렬
             alignItems: "center", // 세로 정렬
@@ -56,6 +56,11 @@ export default function Skills() {
             backgroundColor="#61DAFB"
           />
           <SkillBadge
+            title="Vite"
+            skillImg="/assets/vite.png"
+            backgroundColor="#646CFF"
+          />
+          <SkillBadge
             title="Next.js"
             skillImg="/assets/nextjs.png"
             backgroundColor="#b0b0b0"
@@ -64,6 +69,26 @@ export default function Skills() {
             title="BootStrap"
             skillImg="/assets/bootstrap.png"
             backgroundColor="#007bff"
+          />
+          <SkillBadge
+            title="ElacticUI"
+            skillImg="/assets/elastic.png"
+            backgroundColor="#00B3A6"
+          />
+          <SkillBadge
+            title="MaterialUI"
+            skillImg="/assets/mui.png"
+            backgroundColor="#1976D2"
+          />
+          <SkillBadge
+            title="Firebase"
+            skillImg="/assets/firebase.png"
+            backgroundColor="#FFCA28"
+          />
+          <SkillBadge
+            title="Github"
+            skillImg="/assets/github.png"
+            backgroundColor="#586069"
           />
         </Container>
       </Box>

@@ -16,7 +16,7 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "15vh",
+        minHeight: "15vh",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -84,7 +84,7 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
               borderRadius: "50%",
               backgroundColor: color,
               margin: "0 15px",
-              animation: `fadeIn 1s ease-in-out ${index * 0.3}s forwards`,
+              animation: `fadeIn 1s ease-in-out ${index * 0.6}s forwards`,
               animationDelay: "1s",
               opacity: 0,
               "@keyframes fadeIn": {

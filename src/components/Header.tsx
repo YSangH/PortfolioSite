@@ -29,7 +29,7 @@ function Header() {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: "#87CEEB", height: "10vh" }}
+      sx={{ backgroundColor: "#87CEEB", minHeight: "10vh", minWidth: 900 }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
