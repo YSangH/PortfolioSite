@@ -27,14 +27,28 @@ export default function Portfolio() {
           }}
         >
           <More
-            projectName="프로젝트명"
-            projectText="프로젝트 간단하게 설명할 텍스트 영역입니다."
-            projectImg="/assets/sideProjectMain.png"
+            projectName="비즈니스 플랫폼"
+            projectText="자바기반 풀스택 웹 개발자 실무 양성과정 4인 SemiProject입니다."
+            projectImg="/assets/semimain.png"
+            projectLink="https://github.com/zzooong2/TeamProject_Copang"
+            ProjectFile="/files/semiProject.pdf"
+            image1="/assets/semimain2.png"
+            image2="/assets/category.png"
+            subTitle1="메인 페이지(1)"
+            subTitle2="메인 페이지(2)"
+            subTitle3="카테고리 페이지"
           />
           <More
-            projectName="프로젝트명"
-            projectText="프로젝트 간단하게 설명할 텍스트 영역입니다."
-            projectImg="/assets/sideProjectMain.png"
+            projectName="숙박업소 플랫폼"
+            projectText="자바기반 풀스택 웹 개발자 실무 양성과정 4인 FinalProject입니다."
+            projectImg="/assets/finalmain.png"
+            projectLink="https://github.com/JaydenKim0528/StayWithMe"
+            ProjectFile="/files/finalProject.pdf"
+            image1="/assets/list.png"
+            image2="/assets/detail.png"
+            subTitle1="메인 페이지"
+            subTitle2="리스트 페이지"
+            subTitle3="상세 페이지"
           />
         </Container>
       </Box>

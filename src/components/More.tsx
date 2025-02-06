@@ -12,6 +12,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+// 깃허브 링크
+import Link from "next/link";
 
 // slide-in-top 애니메이션 정의s
 const slideInTop = keyframes`
@@ -26,15 +28,34 @@ const slideInTop = keyframes`
 `;
 
 interface MoreProps {
+  // 카드 정보
   projectName: string;
   projectText: string;
+  // 팝업 이미지
   projectImg: string;
+  image1: string;
+  image2: string;
+  // PPT 파일
+  ProjectFile: string;
+  // 깃허브 링크
+  projectLink: string;
+  // 팝업 텍스트
+  subTitle1: string;
+  subTitle2: string;
+  subTitle3: string;
 }
 
 export default function More({
   projectName,
   projectText,
   projectImg,
+  image1,
+  image2,
+  ProjectFile,
+  projectLink,
+  subTitle1,
+  subTitle2,
+  subTitle3,
 }: MoreProps) {
   const [isVisible, setIsVisible] = React.useState(false); // 애니메이션 타이머 상태
   const [open, setOpen] = React.useState(false); // 팝업 레이어 상태
@@ -49,6 +70,7 @@ export default function More({
   }, []);
   return (
     <>
+      {/* 카드 영역 */}
       <Card
         sx={{
           minWidth: 330,
@@ -89,42 +111,42 @@ export default function More({
         <CardActions sx={{ padding: 2, float: "right" }}>
           <Button
             sx={{
-              minWidth: 150,
+              minWidth: 120,
               height: "30px",
               backgroundColor: "#87CEEB",
               color: "#fff",
               fontWeight: "500",
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
-              // border: " #a9a9a9 1px solid",
             }}
             onClick={() => setOpen(true)} // 버튼 클릭 시 모달 열기
           >
             More Image
           </Button>
-          <Button
-            sx={{
-              height: "30px",
-              backgroundColor: "#87CEEB",
-              color: "#fff",
-              fontWeight: "500",
-              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
-              // border: "#a9a9a9 1px solid",
-            }}
-          >
-            <CardMedia
+          <Link href={projectLink}>
+            <Button
               sx={{
-                height: 18,
-                width: 18,
-                flexShrink: 0, // 크기 유지
-                display: "flex",
-                justifyContent: "center",
-                marginRight: 1,
+                height: "30px",
+                backgroundColor: "#87CEEB",
+                color: "#fff",
+                fontWeight: "500",
+                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
               }}
-              image="/assets/github.png"
-              title="SkillImage"
-            />
-            GitHub
-          </Button>
+            >
+              <CardMedia
+                sx={{
+                  height: 18,
+                  width: 18,
+                  flexShrink: 0, // 크기 유지
+                  display: "flex",
+                  justifyContent: "center",
+                  marginRight: 1,
+                }}
+                image="/assets/github.png"
+                title="SkillImage"
+              />
+              GitHub
+            </Button>
+          </Link>
         </CardActions>
       </Card>
 
@@ -132,47 +154,128 @@ export default function More({
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle
           sx={{
-            height: "8vh",
+            minHeight: "8vh",
             fontWeight: "bold",
             fontSize: "30px",
             margin: 1,
-            display: "flex",
+            lineHeight: "25px",
+            display: "block",
             textAlign: "center",
+            marginBottom: 5,
+            backgroundColor: "#87CEEB",
+            color: "#ffffff",
+            borderRadius: "10px",
           }}
         >
           {projectName}
         </DialogTitle>
-        <DialogContent sx={{ margin: 1, fontSize: "18px" }}>
-          메인화면
+        <DialogContent>
+          <Typography
+            sx={{
+              fontSize: "20px",
+              backgroundColor: "#87CEEB",
+              color: "#fff",
+              width: "150px",
+              height: "40px",
+              lineHeight: "40px",
+              borderRadius: "10px",
+              textAlign: "center",
+              marginBottom: 2,
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            {subTitle1}
+          </Typography>
           <CardMedia
             component="img"
             alt="Project"
-            image="/assets/sideProjectMain.png"
+            image={projectImg}
             sx={{
               width: "100%",
               height: "auto",
               marginTop: 1,
-              marginBottom: 2,
+              marginBottom: 8,
               padding: 2,
               borderRadius: "8px",
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
             }}
           />
-          메인화면2
+          <Typography
+            sx={{
+              fontSize: "20px",
+              backgroundColor: "#87CEEB",
+              color: "#fff",
+              width: "150px",
+              height: "40px",
+              lineHeight: "40px",
+              borderRadius: "10px",
+              textAlign: "center",
+              marginBottom: 2,
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            {subTitle2}
+          </Typography>
           <CardMedia
             component="img"
             alt="Project"
-            image="/assets/sideProjectMain.png"
+            image={image1}
             sx={{
               width: "100%",
               height: "auto",
               marginTop: 1,
-              marginBottom: 2,
+              marginBottom: 8,
               padding: 2,
               borderRadius: "8px",
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
             }}
           />
+          <Typography
+            sx={{
+              fontSize: "20px",
+              backgroundColor: "#87CEEB",
+              color: "#fff",
+              width: "150px",
+              height: "40px",
+              lineHeight: "40px",
+              borderRadius: "10px",
+              textAlign: "center",
+              marginBottom: 2,
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            {subTitle3}
+          </Typography>
+          <CardMedia
+            component="img"
+            alt="Project"
+            image={image2}
+            sx={{
+              width: "100%",
+              height: "auto",
+              marginTop: 1,
+              marginBottom: 8,
+              padding: 2,
+              borderRadius: "8px",
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+            }}
+          />
+          {/* 새탭으로 PPT 파일 보기 */}
+          <Link href={ProjectFile} target="_blank" rel="noopener noreferrer">
+            <Button
+              sx={{
+                height: "40px",
+                padding: 2,
+                fontSize: "18px",
+                backgroundColor: "#87CEEB",
+                color: "#fff",
+                fontWeight: "500",
+                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              PPT로 자세히 보기
+            </Button>
+          </Link>
         </DialogContent>
         <DialogActions>
           <Button
