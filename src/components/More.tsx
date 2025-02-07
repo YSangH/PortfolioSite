@@ -36,7 +36,7 @@ interface MoreProps {
   image1: string;
   image2: string;
   // PPT 파일
-  ProjectFile: string;
+  projectFile: string | undefined;
   // 깃허브 링크
   projectLink: string;
   // 팝업 텍스트
@@ -51,7 +51,7 @@ export default function More({
   projectImg,
   image1,
   image2,
-  ProjectFile,
+  projectFile,
   projectLink,
   subTitle1,
   subTitle2,
@@ -175,7 +175,6 @@ export default function More({
               fontSize: "20px",
               backgroundColor: "#87CEEB",
               color: "#fff",
-              width: "150px",
               height: "40px",
               lineHeight: "40px",
               borderRadius: "10px",
@@ -205,7 +204,6 @@ export default function More({
               fontSize: "20px",
               backgroundColor: "#87CEEB",
               color: "#fff",
-              width: "150px",
               height: "40px",
               lineHeight: "40px",
               borderRadius: "10px",
@@ -235,7 +233,6 @@ export default function More({
               fontSize: "20px",
               backgroundColor: "#87CEEB",
               color: "#fff",
-              width: "150px",
               height: "40px",
               lineHeight: "40px",
               borderRadius: "10px",
@@ -261,7 +258,14 @@ export default function More({
             }}
           />
           {/* 새탭으로 PPT 파일 보기 */}
-          <Link href={ProjectFile} target="_blank" rel="noopener noreferrer">
+          <Link
+            href={projectFile || "#"}
+            target={projectFile ? "_blank" : ""}
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              if (!projectFile) e.preventDefault(); // 클릭 차단
+            }}
+          >
             <Button
               sx={{
                 height: "40px",
@@ -269,9 +273,12 @@ export default function More({
                 fontSize: "18px",
                 backgroundColor: "#87CEEB",
                 color: "#fff",
-                fontWeight: "500",
+                fontWeight: "bold",
                 boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+                opacity: projectFile ? 1 : 0.5, // 비활성화 시 투명도 낮춤
+                pointerEvents: projectFile ? "auto" : "none", // 클릭 비활성화
               }}
+              disabled={!projectFile} // projectFile이 없으면 버튼 비활성화
             >
               PPT로 자세히 보기
             </Button>

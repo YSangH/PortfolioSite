@@ -19,13 +19,12 @@ export default function Skills() {
         <Container
           disableGutters
           sx={{
-            height: "60vh",
             margin: "0px, 237px",
             padding: 4,
-            // display: "flex",
             display: "grid",
             gridTemplateColumns: "repeat(4, 3fr)", // 4열 3행 그리드
-            rowGap: "10px", // 카드 간 간격
+            rowGap: "40px", // 카드 가로간 간격
+            columnGap: "40px", // 카드 세로간 간격
             justifyContent: "center", // 중앙 정렬
             alignItems: "center", // 세로 정렬
           }}

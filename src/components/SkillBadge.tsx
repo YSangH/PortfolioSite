@@ -85,6 +85,7 @@ export default function SkillBadge({
             height: 45,
             fontSize: "30px",
             fontWeight: "bold",
+            color: "white",
           }}
         >
           {title}
