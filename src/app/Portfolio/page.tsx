@@ -65,11 +65,23 @@ export default function Portfolio() {
             projectImg="/assets/lottomain.png"
             projectLink="https://github.com/BTBIIT/lottery"
             projectFile={undefined}
-            image1=""
-            image2=""
+            image1="/assets/animation.gif"
+            image2="/assets/single.gif"
+            subTitle1="추첨기 페이지"
+            subTitle2="추첨 애니메이션"
+            subTitle3="1회 추첨 출력결과"
+          />
+          <More
+            projectName="개발자 포트폴리오 홈페이지"
+            projectText="Next.js와 materialUI를 이용하여 제작한 개발자 홈페이지 입니다."
+            projectImg="/assets/devmain.gif"
+            projectLink="https://github.com/YSangH/PortfolioSite"
+            projectFile={undefined}
+            image1="/assets/devinfo.gif"
+            image2="/assets/devskills.gif"
             subTitle1="메인 페이지"
-            subTitle2="대시보드 페이지"
-            subTitle3="대기방 페이지"
+            subTitle2="정보 페이지"
+            subTitle3="기술스택 페이지"
           />
         </Container>
       </Box>
