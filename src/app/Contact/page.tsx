@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Title from "@/components/Title";
 import Url from "@/components/Url";
@@ -11,13 +12,13 @@ export default function Contact() {
       <Title titleText="Contact" />
       <Box
         sx={{
-          height: "75vh",
+          height: "65vh",
         }}
       >
         <Container
           disableGutters
           sx={{
-            height: "75vh",
+            height: "60vh",
             margin: "0px, 237px",
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)", // 3열 그리드
@@ -30,19 +31,23 @@ export default function Contact() {
             title="Email"
             content="ysh940129@gmail.com"
             imageSrc="/assets/gmail.png"
+            url=""
           />
           <Url
             title="Github"
             content="https://github.com/YSangH"
             imageSrc="/assets/github.png"
+            url="https://github.com/YSangH"
           />
           <Url
             title="Blog"
             content="https://ysh0129.tistory.com/"
             imageSrc="/assets/tistory.png"
+            url="https://ysh0129.tistory.com/"
           />
         </Container>
       </Box>
+      <Footer />
     </div>
   );
 }

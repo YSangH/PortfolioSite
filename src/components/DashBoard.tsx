@@ -80,7 +80,7 @@ export default function DashBoard() {
         <Box
           sx={{
             bgcolor: "#ffffff",
-            height: "80vh",
+            height: "70vh",
             marginTop: "10vh",
             padding: "20vh",
           }}
@@ -92,7 +92,7 @@ export default function DashBoard() {
           >
             {currentGreeting || ""} {/* null일 경우 빈 문자열 */}
           </Typography>
-          <p style={{ fontSize: "30px", marginTop: "50px" }}>
+          <p style={{ fontSize: "30px", marginTop: "40px" }}>
             {typedText || ""}
           </p>
         </Box>

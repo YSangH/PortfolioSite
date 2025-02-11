@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SkillBadge from "@/components/SkillBadge";
 import Title from "@/components/Title";
@@ -12,7 +13,7 @@ export default function Skills() {
       {/* 페이지 전체 영역 */}
       <Box
         sx={{
-          height: "75vh",
+          height: "65vh",
         }}
       >
         {/* 스킬 뱃지 영역 */}
@@ -91,6 +92,7 @@ export default function Skills() {
           />
         </Container>
       </Box>
+      <Footer />
     </div>
   );
 }

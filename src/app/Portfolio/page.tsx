@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import More from "@/components/More";
 import Title from "@/components/Title";
@@ -9,7 +10,7 @@ export default function Portfolio() {
     <>
       <Header />
       <Title titleText="Portfolio" />
-      <Box sx={{ height: "75vh" }}>
+      <Box sx={{ height: "60vh" }}>
         <Container
           disableGutters
           sx={{
@@ -85,6 +86,7 @@ export default function Portfolio() {
           />
         </Container>
       </Box>
+      <Footer />
     </>
   );
 }
