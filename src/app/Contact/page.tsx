@@ -31,7 +31,7 @@ export default function Contact() {
             title="Email"
             content="ysh940129@gmail.com"
             imageSrc="/assets/gmail.png"
-            url=""
+            url="/Form"
           />
           <Url
             title="Github"
