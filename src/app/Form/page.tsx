@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TextField, Button, Container, Typography } from "@mui/material";
+import { TextField, Button, Container, Typography, Box } from "@mui/material";
 import Link from "next/link";
 
 export default function Form() {
@@ -28,95 +28,109 @@ export default function Form() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 5 }}>
-      <Typography
-        gutterBottom
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#87CEEB",
-          height: "50px",
-          fontSize: "30px",
-          fontWeight: "bold",
-          borderRadius: "10px",
-          color: "#ffffff",
-          boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-          lineHeight: "50px",
-        }}
-      >
-        이메일 보내기
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          placeholder={email}
-          fullWidth
-          margin="normal"
-          disabled // 이메일 입력란을 비활성화
-          InputProps={{
-            style: {
-              fontWeight: "bold",
-              fontSize: "20px",
-            },
-          }}
-        />
-        <TextField
-          label="제목"
-          fullWidth
-          margin="normal"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
-          required
-        />
-        <TextField
-          label="내용"
-          fullWidth
-          multiline
-          rows={6}
-          margin="normal"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-        />
+    <Box
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        backgroundImage: 'url("/assets/plane.png")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <Container maxWidth="sm" sx={{ pt: 5 }}>
         <Container
-          disableGutters
-          maxWidth="sm"
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: 2,
-          }}
+          sx={{ backgroundColor: "#ffffff", p: 4, borderRadius: "20px" }}
         >
-          <Button
-            type="submit"
-            variant="contained"
+          <Typography
+            gutterBottom
             sx={{
-              width: "260px",
-              height: "50px",
-              fontWeight: "bold",
+              display: "flex",
+              justifyContent: "center",
               backgroundColor: "#87CEEB",
-              fontSize: "20px",
+              height: "50px",
+              fontSize: "30px",
+              fontWeight: "bold",
+              borderRadius: "10px",
+              color: "#ffffff",
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+              lineHeight: "50px",
             }}
           >
-            보내기
-          </Button>
-          <Link href={"Contact"}>
-            <Button
-              type="button" // 버튼 타입을 'button'으로 변경
-              variant="contained"
+            이메일 보내기
+          </Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              placeholder={email}
+              fullWidth
+              margin="normal"
+              disabled // 이메일 입력란을 비활성화
+              InputProps={{
+                style: {
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                },
+              }}
+            />
+            <TextField
+              label="제목"
+              fullWidth
+              margin="normal"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              required
+            />
+            <TextField
+              label="내용"
+              fullWidth
+              multiline
+              rows={6}
+              margin="normal"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+            />
+            <Container
+              disableGutters
+              maxWidth="sm"
               sx={{
-                width: "260px",
-                height: "50px",
-                fontWeight: "bold",
-                backgroundColor: "#87CEEB",
-                fontSize: "20px",
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: 2,
               }}
             >
-              뒤로가기
-            </Button>
-          </Link>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  width: "240px",
+                  height: "50px",
+                  fontWeight: "bold",
+                  backgroundColor: "#87CEEB",
+                  fontSize: "20px",
+                }}
+              >
+                보내기
+              </Button>
+              <Link href={"Contact"}>
+                <Button
+                  type="button" // 버튼 타입을 'button'으로 변경
+                  variant="contained"
+                  sx={{
+                    width: "240px",
+                    height: "50px",
+                    fontWeight: "bold",
+                    backgroundColor: "#87CEEB",
+                    fontSize: "20px",
+                  }}
+                >
+                  뒤로가기
+                </Button>
+              </Link>
+            </Container>
+          </form>
+          {status && <Typography sx={{ mt: 2 }}>{status}</Typography>}
         </Container>
-      </form>
-      {status && <Typography sx={{ mt: 2 }}>{status}</Typography>}
-    </Container>
+      </Container>
+    </Box>
   );
 }
