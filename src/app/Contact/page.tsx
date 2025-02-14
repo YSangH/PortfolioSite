@@ -18,7 +18,7 @@ export default function Contact() {
         <Container
           disableGutters
           sx={{
-            height: "60vh",
+            height: "65vh",
             margin: "0px, 237px",
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)", // 3열 그리드

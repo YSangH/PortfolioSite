@@ -14,14 +14,14 @@ export default function Portfolio() {
         <Container
           disableGutters
           sx={{
-            marginTop: "5vh",
             margin: "0px, 237px",
             display: "grid",
             gridTemplateColumns: "repeat(2, 2fr)", // 2열 그리드
-            rowGap: "65px", // 카드 간 간격
-            columnGap: "65px",
+            gap: "65px",
             justifyContent: "center", // 중앙 정렬
             alignItems: "center", // 세로 정렬
+            marginTop: "5vh",
+            paddingBottom: "20vh",
           }}
         >
           <More

@@ -15,9 +15,7 @@ export default function Footer() {
           backgroundColor: "#87CEEB",
           color: "#ffffff",
           position: "fixed",
-          zIndex: 1,
           boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-          bottom: 0, // 아래에 고정
         }}
       >
         <Container sx={{ textAlign: "center", paddingTop: "10px" }}>
