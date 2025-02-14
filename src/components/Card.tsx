@@ -39,9 +39,10 @@ export default function InfoCard({ title, content, imageSrc }: InfoCardProps) {
   return (
     <Card
       sx={{
-        minWidth: 420,
+        minWidth: 350,
         maxWidth: 690,
-        height: 200,
+        minHeight: 140,
+        maxHeight: 170,
         animation: isVisible ? `${slideInTop} 0.8s ease-out` : `none`,
         display: isVisible ? "flex" : "none", // Flexbox 적용
         alignItems: "center", // 세로 정렬

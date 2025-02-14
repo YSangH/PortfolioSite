@@ -16,7 +16,8 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "15vh",
+        marginTop: "3vh",
+        minHeight: "12vh",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>

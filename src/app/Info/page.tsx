@@ -14,17 +14,18 @@ export default function Info() {
       {/* 페이지 영역 */}
       <Box
         sx={{
-          height: "65vh",
+          height: "60vh",
         }}
       >
         <Container
           disableGutters
           sx={{
-            height: "60vh",
+            marginTop: "5vh",
+            height: "55vh",
             margin: "0px, 237px",
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)", // 2열 그리드
-            gap: "40px", // 카드 간 간격
+            gap: "65px", // 카드 간 간격
             justifyContent: "center", // 중앙 정렬
             alignItems: "center", // 세로 정렬
           }}

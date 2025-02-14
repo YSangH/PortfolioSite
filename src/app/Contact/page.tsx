@@ -41,9 +41,9 @@ export default function Contact() {
           />
           <Url
             title="Blog"
-            content="https://ysh0129.tistory.com/"
+            content="https://ysh0129.tistory.com"
             imageSrc="/assets/tistory.png"
-            url="https://ysh0129.tistory.com/"
+            url="https://ysh0129.tistory.com"
           />
         </Container>
       </Box>
