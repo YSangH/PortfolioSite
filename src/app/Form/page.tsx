@@ -37,9 +37,18 @@ export default function Form() {
         backgroundPosition: "center",
       }}
     >
-      <Container maxWidth="sm" sx={{ pt: 5 }}>
+      <Container
+        maxWidth="sm"
+        sx={{
+          pt: 8,
+        }}
+      >
         <Container
-          sx={{ backgroundColor: "#ffffff", p: 4, borderRadius: "20px" }}
+          sx={{
+            backgroundColor: "#ffffff",
+            p: 4,
+            borderRadius: "20px",
+          }}
         >
           <Typography
             gutterBottom
