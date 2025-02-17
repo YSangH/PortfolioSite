@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import More from "@/components/More";
 import Title from "@/components/Title";
+import More from "@/components/More";
 import { Box, Container } from "@mui/material";
 
 // Info에 해당하는 Page

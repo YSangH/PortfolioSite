@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["Info", "Skills", "Portfolio", "Contact"];
+const pages = ["Introduce", "Info", "Skills", "Portfolio", "Contact"];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,7 +29,7 @@ function Header() {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: "#87CEEB", minHeight: "10vh", minWidth: 900 }}
+      sx={{ backgroundColor: "#87CEEB", minHeight: "10vh", minWidth: 1020 }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>

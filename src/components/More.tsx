@@ -157,7 +157,7 @@ export default function More({
             minHeight: "8vh",
             fontWeight: "bold",
             fontSize: "30px",
-            margin: 1,
+            margin: 2,
             lineHeight: "25px",
             display: "block",
             textAlign: "center",
