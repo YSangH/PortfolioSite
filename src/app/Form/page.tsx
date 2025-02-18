@@ -48,6 +48,7 @@ export default function Form() {
             backgroundColor: "#ffffff",
             p: 4,
             borderRadius: "20px",
+            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
           }}
         >
           <Typography
