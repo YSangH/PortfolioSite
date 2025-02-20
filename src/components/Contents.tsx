@@ -65,9 +65,29 @@ export default function Contents({ titles, contents }: ContentProps) {
           <AccordionDetails
             sx={{
               boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+              padding: 3,
             }}
           >
-            <Typography>{contents[index]}</Typography>
+            {contents[index].split("\n").map((line, i) =>
+              i === 0 ? ( // 첫 번째 줄 (제목)
+                <Typography
+                  key={i}
+                  component="div"
+                  sx={{
+                    marginBottom: "16px",
+                    fontWeight: "bold",
+                    color: "#1976D2",
+                  }}
+                >
+                  {line}
+                </Typography>
+              ) : (
+                // 나머지 줄 (본문)
+                <Typography key={i} component="div">
+                  {line}
+                </Typography>
+              )
+            )}
           </AccordionDetails>
         </Accordion>
       ))}
