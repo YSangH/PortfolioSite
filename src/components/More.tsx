@@ -79,7 +79,7 @@ export default function More({
           maxHeight: 400,
           boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
           animation: isVisible ? `${slideInTop} 0.8s ease-out` : `none`,
-          display: isVisible ? "block" : "none", // Flexbox 적용
+          display: isVisible ? "block" : "none",
         }}
       >
         <CardMedia

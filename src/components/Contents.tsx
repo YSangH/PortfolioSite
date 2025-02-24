@@ -39,6 +39,7 @@ export default function Contents({ titles, contents }: ContentProps) {
         <Accordion
           key={index}
           sx={{
+            opacity: isVisible ? 1 : 0, // 처음에는 숨김
             animation: isVisible ? `${slideInTop} 0.8s ease-out` : `none`,
           }}
         >
@@ -68,26 +69,43 @@ export default function Contents({ titles, contents }: ContentProps) {
               padding: 3,
             }}
           >
-            {contents[index].split("\n").map((line, i) =>
-              i === 0 ? ( // 첫 번째 줄 (제목)
-                <Typography
-                  key={i}
-                  component="div"
-                  sx={{
-                    marginBottom: "16px",
-                    fontWeight: "bold",
-                    color: "#1976D2",
-                  }}
-                >
-                  {line}
-                </Typography>
-              ) : (
-                // 나머지 줄 (본문)
-                <Typography key={i} component="div">
-                  {line}
-                </Typography>
-              )
-            )}
+            {contents[index].split("\n\n").map((paragraph, i) => {
+              const lines = paragraph.split("\n"); // 문장을 줄바꿈 기준으로 분리
+              const firstLine = lines[0].trim(); // 첫 번째 줄 (제목)
+              const restLines = lines.slice(1); // 나머지 줄 (본문)
+
+              return (
+                <div key={i} style={{ marginBottom: "16px" }}>
+                  {/* 제목 부분 - 대괄호([])로 감싸진 경우만 색상 적용 */}
+                  {firstLine.startsWith("[") && firstLine.endsWith("]") ? (
+                    <Typography
+                      component="div"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#1976D2",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      {firstLine}
+                    </Typography>
+                  ) : (
+                    <Typography component="div">{firstLine}</Typography>
+                  )}
+
+                  {/* 본문 부분 - 줄바꿈 유지 */}
+                  {restLines.length > 0 && (
+                    <Typography component="div">
+                      {restLines.map((line, j) => (
+                        <React.Fragment key={j}>
+                          {line}
+                          {j < restLines.length - 1 && <br />}
+                        </React.Fragment>
+                      ))}
+                    </Typography>
+                  )}
+                </div>
+              );
+            })}
           </AccordionDetails>
         </Accordion>
       ))}
