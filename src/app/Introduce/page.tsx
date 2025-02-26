@@ -21,7 +21,13 @@ export default function Introduce() {
           }}
         >
           <Contents
-            titles={["성장 과정", "직무 경험", "성격의 장단점", "입사 포부"]}
+            titles={[
+              "성장 과정",
+              "직무 경험",
+              "성격의 장단점",
+              "입사 포부",
+              "활동 및 경력",
+            ]}
             contents={[
               // 성장 과정
               `[디자인에서 프론트엔드 개발로의 전환]
@@ -74,6 +80,18 @@ export default function Introduce() {
               특히, React, Vue.js와 같은 최신 기술을 활용하여 실무 경험을 쌓고, 
               이를 통해 제 기술적 역량을 한층 강화하여 추후에 프로젝트를 주도하는 것이 저의 목표입니다.
               `,
+              {
+                title: "",
+                text: [
+                  `스마트스토어 운영(엔코체어)`,
+                  `로고 공모전 참여(라우드소싱)`,
+                ],
+                buttonText: ["이미지 보기", "이미지 보기"], // 버튼 텍스트
+                modalContent: [
+                  "/assets/onlinestore.png",
+                  "/assets/onlinestore.png",
+                ],
+              },
             ]}
           />
         </Container>
