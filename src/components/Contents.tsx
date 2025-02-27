@@ -98,31 +98,45 @@ export default function Contents({ titles, contents }: ContentProps) {
             >
               {typeof content === "object" ? (
                 <>
-                  {/* 제목 */}
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontWeight: "bold",
-                      color: "#1976D2",
-                      marginBottom: "8px",
-                    }}
-                  >
-                    {content.title}
-                  </Typography>
+                  {/* 제목 스타일 적용 */}
+                  {content.title && (
+                    <Typography
+                      component="div"
+                      sx={{
+                        fontWeight: "bold",
+                        color: "#1976D2",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      {content.title}
+                    </Typography>
+                  )}
 
                   {/* 설명 텍스트 & 버튼 (여러 개 처리) */}
                   {Array.isArray(content.text) ? (
                     content.text.map((line, i) => (
                       <div key={i} style={{ marginBottom: "8px" }}>
-                        <Typography component="div">{line}</Typography>
+                        <Typography
+                          component="div"
+                          sx={{
+                            whiteSpace: "pre-line", // 개행 유지
+                          }}
+                        >
+                          {line}
+                        </Typography>
 
                         {/* 버튼이 존재하는 경우에만 출력 */}
                         {Array.isArray(content.buttonText) &&
                           Array.isArray(content.modalContent) && (
                             <Button
                               variant="contained"
-                              color="primary"
-                              sx={{ marginTop: "6px", marginBottom: "10px" }}
+                              sx={{
+                                marginTop: "6px",
+                                marginBottom: "10px",
+                                backgroundColor: "#87CEEB",
+                                fontWeight: "bold",
+                                fontSize: "15px",
+                              }}
                               onClick={() =>
                                 handleOpen(content.modalContent?.[i] ?? "")
                               }
@@ -133,12 +147,26 @@ export default function Contents({ titles, contents }: ContentProps) {
                       </div>
                     ))
                   ) : (
-                    <Typography component="div">{content.text}</Typography>
+                    <Typography
+                      component="div"
+                      sx={{
+                        whiteSpace: "pre-line", // 개행 유지
+                      }}
+                    >
+                      {content.text}
+                    </Typography>
                   )}
                 </>
               ) : (
-                // 일반 텍스트 처리
-                <Typography component="div">{content as string}</Typography>
+                // 본문 텍스트에 개행 유지
+                <Typography
+                  component="div"
+                  sx={{
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  {content as string}
+                </Typography>
               )}
             </AccordionDetails>
           </Accordion>

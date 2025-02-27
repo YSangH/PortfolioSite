@@ -27,6 +27,7 @@ export default function Introduce() {
               "성격의 장단점",
               "입사 포부",
               "활동 및 경력",
+              "자격증",
             ]}
             contents={[
               // 성장 과정
@@ -92,6 +93,13 @@ export default function Introduce() {
                   "/assets/onlinestore.png",
                 ],
               },
+              `
+              웹디자인 기능사
+
+              GTQ 일러스트 2급
+              
+              GTQ 포토샵 2급
+              `,
             ]}
           />
         </Container>
