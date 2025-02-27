@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -57,6 +57,31 @@ export default function Contents({ titles, contents }: ContentProps) {
     setOpen(false);
   };
 
+  // 대괄호(`[]`) 안의 텍스트를 스타일링하는 함수
+  const formatText = (text: string) => {
+    const regex = /\[(.*?)\]/g; // 대괄호 안의 내용 찾기
+    const parts = text.split(regex); // 대괄호를 기준으로 문자열을 나누기
+
+    return parts.map((part, index) =>
+      index % 2 === 1 ? (
+        <Typography
+          key={index}
+          component="span"
+          sx={{
+            fontWeight: "bold",
+            color: "#87CEEB",
+          }}
+        >
+          [{part}]
+        </Typography>
+      ) : (
+        <Typography component="span" key={index}>
+          {part}
+        </Typography>
+      )
+    );
+  };
+
   return (
     <>
       {titles.map((title, index) => {
@@ -67,7 +92,7 @@ export default function Contents({ titles, contents }: ContentProps) {
             key={index}
             sx={{
               opacity: isVisible ? 1 : 0,
-              animation: isVisible ? `${slideInTop} 0.8s ease-out` : `none`,
+              animation: isVisible ? `${slideInTop} 0.8s ease-out` : "none",
             }}
           >
             <AccordionSummary
@@ -98,7 +123,6 @@ export default function Contents({ titles, contents }: ContentProps) {
             >
               {typeof content === "object" ? (
                 <>
-                  {/* 제목 스타일 적용 */}
                   {content.title && (
                     <Typography
                       component="div"
@@ -112,22 +136,19 @@ export default function Contents({ titles, contents }: ContentProps) {
                     </Typography>
                   )}
 
-                  {/* 설명 텍스트 & 버튼 (여러 개 처리) */}
                   {Array.isArray(content.text) ? (
                     content.text.map((line, i) => (
                       <div key={i} style={{ marginBottom: "8px" }}>
                         <Typography
                           component="div"
-                          sx={{
-                            whiteSpace: "pre-line", // 개행 유지
-                          }}
+                          sx={{ whiteSpace: "pre-line" }}
                         >
-                          {line}
+                          {formatText(line)}
                         </Typography>
 
-                        {/* 버튼이 존재하는 경우에만 출력 */}
                         {Array.isArray(content.buttonText) &&
-                          Array.isArray(content.modalContent) && (
+                          Array.isArray(content.modalContent) &&
+                          content.buttonText[i] && (
                             <Button
                               variant="contained"
                               sx={{
@@ -147,25 +168,14 @@ export default function Contents({ titles, contents }: ContentProps) {
                       </div>
                     ))
                   ) : (
-                    <Typography
-                      component="div"
-                      sx={{
-                        whiteSpace: "pre-line", // 개행 유지
-                      }}
-                    >
-                      {content.text}
+                    <Typography component="div" sx={{ whiteSpace: "pre-line" }}>
+                      {formatText(content.text as string)}
                     </Typography>
                   )}
                 </>
               ) : (
-                // 본문 텍스트에 개행 유지
-                <Typography
-                  component="div"
-                  sx={{
-                    whiteSpace: "pre-line",
-                  }}
-                >
-                  {content as string}
+                <Typography component="div" sx={{ whiteSpace: "pre-line" }}>
+                  {formatText(content as string)}
                 </Typography>
               )}
             </AccordionDetails>
@@ -173,11 +183,10 @@ export default function Contents({ titles, contents }: ContentProps) {
         );
       })}
 
-      {/* 팝업 레이어 (모달) */}
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
         <DialogTitle>상세 이미지</DialogTitle>
         <DialogContent sx={{ maxHeight: "80vh", overflowY: "auto" }}>
-          {modalContent.startsWith("/") ? ( // 이미지 경로인지 확인
+          {modalContent.startsWith("/") ? (
             <Image
               src={modalContent}
               alt="활동 및 경력 이미지"
@@ -190,7 +199,7 @@ export default function Contents({ titles, contents }: ContentProps) {
               }}
             />
           ) : (
-            <Typography>{modalContent}</Typography> // 텍스트인 경우
+            <Typography>{modalContent}</Typography>
           )}
         </DialogContent>
       </Dialog>
