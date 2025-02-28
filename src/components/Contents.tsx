@@ -28,7 +28,7 @@ interface ContentItem {
   text?: string | string[];
   image?: string;
   buttonText?: string | string[];
-  modalContent?: string | string[];
+  modalContent?: string | string[][];
 }
 
 interface ContentProps {
@@ -188,7 +188,17 @@ export default function Contents({ titles, contents }: ContentProps) {
       })}
 
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogTitle>상세 이미지</DialogTitle>
+        <DialogTitle
+          sx={{
+            margin: 0,
+            color: "#ffffff",
+            backgroundColor: "#87CEEB",
+            fontWeight: "bold",
+            fontSize: "24px",
+          }}
+        >
+          상세 이미지
+        </DialogTitle>
         <DialogContent sx={{ maxHeight: "80vh", overflowY: "auto" }}>
           {modalContent.length > 0 ? (
             modalContent.map((imgSrc, index) =>

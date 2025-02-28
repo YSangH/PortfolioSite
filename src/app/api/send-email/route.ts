@@ -1,40 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    console.log("📩 이메일 전송 요청:", body);
+    const { to, subject, message } = await req.json();
 
-    if (!body.to || !body.subject || !body.message) {
-      console.error("❌ 요청 데이터 오류: 필수 데이터 누락");
-      return NextResponse.json(
-        { success: false, error: "잘못된 요청 데이터" },
-        { status: 400 }
-      );
-    }
-
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER, // Gmail 주소
-        pass: process.env.EMAIL_PASS, // Gmail 앱 비밀번호
-      },
+    const data = await resend.emails.send({
+      from: "Your Name <your@email.com>", // 반드시 Resend에서 인증한 도메인 사용
+      to: [to], // 여러 개의 이메일을 보낼 수도 있음
+      subject,
+      text: message,
     });
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: body.to,
-      subject: body.subject,
-      text: body.message,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    console.log("✅ 이메일 전송 성공");
-    return NextResponse.json({ success: true, message: "이메일 전송 완료" });
+    return NextResponse.json({ success: true, data });
   } catch (error) {
-    console.error("❌ 이메일 전송 오류:", error);
     return NextResponse.json(
       { success: false, error: (error as Error).message },
       { status: 500 }

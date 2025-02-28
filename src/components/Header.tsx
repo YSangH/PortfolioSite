@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["Introduce", "Info", "Skills", "Portfolio", "Contact"];
+const pages = ["Info", "Introduce", "Skills", "Portfolio", "Contact"];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
