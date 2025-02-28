@@ -95,8 +95,14 @@ export default function Introduce() {
                 ],
                 buttonText: ["", "", "이미지 보기", "이미지 보기"], // 버튼 텍스트
                 modalContent: [
-                  "/assets/onlinestore.png",
-                  "/assets/onlinestore.png",
+                  [],
+                  [],
+                  ["/assets/onlinestore.png"],
+                  [
+                    "/assets/participation.jpg",
+                    "/assets/logodesign1.png",
+                    "/assets/logodesign2.jpg",
+                  ],
                 ],
               },
               `

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -39,7 +39,7 @@ interface ContentProps {
 export default function Contents({ titles, contents }: ContentProps) {
   const [isVisible, setIsVisible] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const [modalContent, setModalContent] = React.useState("");
+  const [modalContent, setModalContent] = useState<string[]>([]);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,8 +48,12 @@ export default function Contents({ titles, contents }: ContentProps) {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleOpen = (content: string) => {
-    setModalContent(content);
+  const handleOpen = (content: string | string[]) => {
+    if (Array.isArray(content)) {
+      setModalContent(content); // 이미지 리스트를 저장
+    } else {
+      setModalContent([content]); // 단일 이미지도 배열로 변환
+    }
     setOpen(true);
   };
 
@@ -141,7 +145,7 @@ export default function Contents({ titles, contents }: ContentProps) {
                       <div key={i} style={{ marginBottom: "8px" }}>
                         <Typography
                           component="div"
-                          sx={{ whiteSpace: "pre-line" }}
+                          sx={{ whiteSpace: "pre-line", marginTop: 2 }}
                         >
                           {formatText(line)}
                         </Typography>
@@ -159,8 +163,8 @@ export default function Contents({ titles, contents }: ContentProps) {
                                 fontSize: "15px",
                               }}
                               onClick={() =>
-                                handleOpen(content.modalContent?.[i] ?? "")
-                              }
+                                handleOpen(content.modalContent?.at(i) ?? [])
+                              } // 배열이므로 기본값을 []
                             >
                               {content.buttonText?.[i]}
                             </Button>
@@ -186,20 +190,28 @@ export default function Contents({ titles, contents }: ContentProps) {
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
         <DialogTitle>상세 이미지</DialogTitle>
         <DialogContent sx={{ maxHeight: "80vh", overflowY: "auto" }}>
-          {modalContent.startsWith("/") ? (
-            <Image
-              src={modalContent}
-              alt="활동 및 경력 이미지"
-              width={600}
-              height={800}
-              style={{
-                width: "100%",
-                maxHeight: "100%",
-                objectFit: "cover",
-              }}
-            />
+          {modalContent.length > 0 ? (
+            modalContent.map((imgSrc, index) =>
+              imgSrc.startsWith("/") ? (
+                <Image
+                  key={index}
+                  src={imgSrc}
+                  alt={`활동 및 경력 이미지 ${index + 1}`}
+                  width={600}
+                  height={800}
+                  style={{
+                    width: "100%",
+                    maxHeight: "100%",
+                    objectFit: "cover",
+                    marginBottom: "10px",
+                  }}
+                />
+              ) : (
+                <Typography key={index}>{imgSrc}</Typography>
+              )
+            )
           ) : (
-            <Typography>{modalContent}</Typography>
+            <Typography>이미지가 없습니다.</Typography>
           )}
         </DialogContent>
       </Dialog>
