@@ -33,7 +33,7 @@ export default function Info() {
           <Card title="이름" content="유상현" imageSrc="/assets/name.jpg" />
           <Card
             title="생년월일"
-            content="1994월 1월 29일"
+            content="1994년 1월 29일"
             imageSrc="/assets/birth.jpg"
           />
           <Card
