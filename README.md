@@ -49,4 +49,40 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-%2338B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=github&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+
+## 폴더 구조
+```
+- .next
+- .vercel
+- node_modules
+- public
+  ├── assets
+  ├── files
+- src
+  ├── app
+  │   ├── api/send-email
+  │   │   ├── middleware.ts
+  │   │   ├── route.ts
+  │   ├── Contact/page.tsx
+  │   ├── Form/page.tsx  -  메일 보내기 위한 페이지
+  │   ├── Info/page.tsx  -  기본 정보 페이지
+  │   ├── Introduce/page.tsx  -  자기 소개 페이지
+  │   ├── Portfolio/page.tsx  -  프로젝트 참여 이력 페이지
+  │   ├── Skills/page.tsx  -  기술 스택 페이지
+  │   ├── favicon.ico  -  파비콘 파일
+  │   ├── globals.css  -  프로젝트 전역(Global) 스타일을 정의하는 CSS 파일
+  │   ├── layout.tsx
+  │   └── page.tsx
+  ├── components
+  │   ├── Card.tsx
+  │   ├── Contents.tsx
+  │   ├── DashBoard.tsx
+  │   ├── Footer.tsx
+  │   ├── Header.tsx
+  │   ├── More.tsx
+  │   ├── SkillBadge.tsx
+  │   ├── Title.tsx
+  │   └── Url.tsx
+```
+
