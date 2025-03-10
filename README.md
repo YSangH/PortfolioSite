@@ -37,8 +37,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 # PortfolioSite
 
-## 나의 포트폴리오 사이트
-
 나에 대한 정보와 자기 소개 그리고 프로젝트 활동을 알리는 사이트
 
 ## 사용 기술
