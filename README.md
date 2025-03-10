@@ -57,14 +57,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 - .vercel
 - node_modules
 - public
-  ├── assets
-  ├── files
+  ├── assets  -  이미지 파일을 모아두는 폴더
+  ├── files  -  PDF 등 파일을 모아두는 폴더
 - src
-  ├── app
-  │   ├── api/send-email
-  │   │   ├── middleware.ts
-  │   │   ├── route.ts
-  │   ├── Contact/page.tsx
+  ├── app  -  페이지와 관련된 폴더
+  │   ├── api/send-email  -  이메일과 관련된 백엔드 폴더
+  │   │   ├── middleware.ts  -  이메일을 보낼 때 짧은 시간에 많이 보내는 것을 방지하는 파일
+  │   │   ├── route.ts  -  Form.tsx에서 요청했을 때 알려주는 파일
+  │   ├── Contact/page.tsx  -  활동하는 url이 있는 페이지
   │   ├── Form/page.tsx  -  메일 보내기 위한 페이지
   │   ├── Info/page.tsx  -  기본 정보 페이지
   │   ├── Introduce/page.tsx  -  자기 소개 페이지
@@ -72,17 +72,17 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
   │   ├── Skills/page.tsx  -  기술 스택 페이지
   │   ├── favicon.ico  -  파비콘 파일
   │   ├── globals.css  -  프로젝트 전역(Global) 스타일을 정의하는 CSS 파일
-  │   ├── layout.tsx
-  │   └── page.tsx
-  ├── components
-  │   ├── Card.tsx
-  │   ├── Contents.tsx
-  │   ├── DashBoard.tsx
-  │   ├── Footer.tsx
-  │   ├── Header.tsx
-  │   ├── More.tsx
-  │   ├── SkillBadge.tsx
-  │   ├── Title.tsx
-  │   └── Url.tsx
+  │   ├── layout.tsx  -  Next.js의 루트 레이아웃을 정의하는 파일
+  │   └── page.tsx  -  메인 페이지
+  ├── components  -  UI와 관련된 컴포넌트 폴더
+  │   ├── Card.tsx  -  Info.tsx에서 아이콘과 타이틀, 내용이 있는 컴포넌트
+  │   ├── Contents.tsx  -  Introduce.tsx에서 적용되는 컴포넌트
+  │   ├── DashBoard.tsx  -  메인페이지에 쓰이는 컴포넌트
+  │   ├── Footer.tsx  -  푸터 펌포넌트
+  │   ├── Header.tsx  -  헤더 컴포넌트
+  │   ├── More.tsx  -  Portfolio.tsx에서 썸네일과 팝업레이어로 보여주는 컴포넌트
+  │   ├── SkillBadge.tsx  -  스킬 뱃지 컴포넌트
+  │   ├── Title.tsx  -  타이틀 컴포넌트
+  │   └── Url.tsx  -  Contact.tsx에서 해당 경로를 보여주기 위해 쓰이는 컴포넌트
 ```
 
