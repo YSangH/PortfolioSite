@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "YSH's Site",
-  description: "유상현의 사이트 입니다.ㄴ",
+  description: "유상현의 사이트 입니다.",
 };
 
 export default function RootLayout({
