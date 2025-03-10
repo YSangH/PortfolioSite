@@ -46,7 +46,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 <span style="font-size: 1.5em; font-weight: bold;">Stack</span>
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![Material-UI](https://img.shields.io/badge/Material--UI-007FFF?stylefor-the-badge&logo=mui&logoColor=white)
+![Material-UI](https://img.shields.io/badge/Material--UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-%2338B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)
