@@ -97,9 +97,9 @@
 
 ## 배포 링크
 <br>
-https://yshdevprofile.vercel.app/
+[웹 페이지 주소]
 <br>
-[웹 페이지 주소](https://yshdevprofile.vercel.app/)
+https://yshdevprofile.vercel.app/
 
 
 
