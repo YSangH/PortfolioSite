@@ -14,6 +14,10 @@
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
+## 기획 및 구상(Figma)
+https://ysh0129.tistory.com/76
+
+
 ## 폴더 구조
 ```
 - .next
