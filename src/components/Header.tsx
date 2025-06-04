@@ -37,6 +37,7 @@ function Header() {
           sx={{
             display: "flex",
             alignItems: "center",
+            paddingTop: "2.5vh",
             minHeight: "10vh",
           }}
         >

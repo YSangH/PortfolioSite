@@ -19,7 +19,7 @@ export default function Footer() {
           boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
         }}
       >
-        <Container sx={{ textAlign: "center", paddingTop: "10px" }}>
+        <Container sx={{ textAlign: "center", paddingTop: "5px" }}>
           <Typography
             variant="h6"
             sx={{
