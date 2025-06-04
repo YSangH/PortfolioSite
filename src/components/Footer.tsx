@@ -21,7 +21,7 @@ export default function Footer() {
           <Typography
             variant="h6"
             sx={{
-              fontSize: "14px",
+              fontSize: "clamp(0.5rem, 1vw, 1rem)",
               letterSpacing: "4px",
               fontWeight: "bold",
               marginBottom: "2px",
@@ -32,7 +32,7 @@ export default function Footer() {
           <Typography
             variant="h6"
             sx={{
-              fontSize: "14px",
+              fontSize: "clamp(0.5rem, 1vw, 1rem)",
               letterSpacing: "2px",
               fontWeight: "bold",
               marginBottom: "2px",

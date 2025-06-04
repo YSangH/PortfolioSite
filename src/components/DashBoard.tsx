@@ -31,19 +31,19 @@ export default function DashBoard() {
     let index = 0;
 
     const initialTimeout = setTimeout(() => {
-      setCurrentGreeting(greetings[0]); // 0.1초 뒤 첫 인사말 표시
+      setCurrentGreeting(greetings[0]);
 
       const interval = setInterval(() => {
         index += 1;
 
         if (index === greetings.length) {
           clearInterval(interval);
-          setAnimationEnded(true); // 애니메이션 종료
+          setAnimationEnded(true);
         } else {
           setCurrentGreeting(greetings[index]);
         }
-      }, 200); // 0.2초 간격으로 인사말 변경
-    }, 600); // 처음 0.6초 동안 비어 있음
+      }, 200);
+    }, 600);
 
     return () => {
       clearTimeout(initialTimeout);
@@ -57,15 +57,13 @@ export default function DashBoard() {
 
       const typingInterval = setInterval(() => {
         setTypedText((prev) => {
-          const updatedText = (prev ?? "") + text[charIndex];
-          console.log("Updated Text:", updatedText); // 디버깅
-          return updatedText;
+          return (prev ?? "") + text[charIndex];
         });
         charIndex += 1;
 
         if (charIndex >= text.length) {
           clearInterval(typingInterval);
-          setTypedText(text); // 최종 텍스트 강제 설정
+          setTypedText(text);
         }
       }, 100);
 
@@ -76,25 +74,38 @@ export default function DashBoard() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ bgcolor: "#ffffff" }}>
         <Box
           sx={{
             bgcolor: "#ffffff",
-            height: "70vh",
-            marginTop: "10vh",
-            padding: "20vh",
+            minHeight: "60vh", // 고정 height 대신 최소 높이 설정
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "center",
+            margin: { xs: "5vh 5vw", md: "10vh 10vw" },
+            textAlign: "center", // 모바일에서 텍스트 중앙 정렬
           }}
         >
           <Typography
             variant="h4"
             gutterBottom
-            sx={{ fontWeight: "bold", fontSize: "60px" }}
+            sx={{
+              float: "left",
+              fontWeight: "bold",
+              fontSize: { xs: "30px", sm: "40px", md: "60px" }, // 반응형 폰트 크기
+            }}
           >
-            {currentGreeting || ""} {/* null일 경우 빈 문자열 */}
+            {currentGreeting || ""}
           </Typography>
-          <p style={{ fontSize: "30px", marginTop: "40px" }}>
+          <Typography
+            sx={{
+              fontSize: { xs: "20px", sm: "25px", md: "30px" }, // 반응형 텍스트 크기
+              marginTop: "20px",
+            }}
+          >
             {typedText || ""}
-          </p>
+          </Typography>
         </Box>
       </Container>
     </React.Fragment>

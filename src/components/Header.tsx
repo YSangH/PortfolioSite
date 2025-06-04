@@ -33,7 +33,6 @@ function Header() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* 수정된 부분 */}
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Typography
               variant="h6"
@@ -44,6 +43,7 @@ function Header() {
                 display: { xs: "none", md: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
+                fontSize: "clamp(1rem, 2vw, 1.25rem)",
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
@@ -80,7 +80,14 @@ function Header() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontSize: "clamp(1rem, 2.5vw, 2rem)",
+                    }}
+                  >
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
