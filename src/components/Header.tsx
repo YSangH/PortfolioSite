@@ -32,7 +32,14 @@ function Header() {
       sx={{ backgroundColor: "#87CEEB", minHeight: "10vh", minWidth: 1020 }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar
+          disableGutters
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            minHeight: "10vh",
+          }}
+        >
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Typography
               variant="h6"

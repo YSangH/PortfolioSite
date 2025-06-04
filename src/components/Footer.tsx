@@ -11,6 +11,8 @@ export default function Footer() {
           minWidth: "600px",
           width: "100%",
           minHeight: "10vh",
+          display: "flex",
+          alignItems: "center",
           backgroundColor: "#87CEEB",
           color: "#ffffff",
           position: "fixed",
