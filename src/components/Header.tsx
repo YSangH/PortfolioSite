@@ -6,39 +6,37 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-
-export const metadata = {
-  viewport: {
-    width: "device-width",
-    initialScale: 1.0,
-    maximumScale: 1.0,
-    userScalable: false,
-  },
-};
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const pages = ["Info", "Introduce", "Skills", "Portfolio", "Contact"];
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
+      setIsDrawerOpen(open);
+    };
 
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: "#87CEEB", minHeight: "10vh", minWidth: 1020 }}
+      sx={{ backgroundColor: "#87CEEB", minHeight: "10vh" }}
     >
       <Container maxWidth="xl">
         <Toolbar
@@ -56,8 +54,8 @@ function Header() {
               noWrap
               sx={{
                 mr: 2,
-                marginLeft: "50px",
-                display: { xs: "none", md: "flex" },
+                marginLeft: "20px",
+                display: { xs: "flex", md: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
                 fontSize: "clamp(1rem, 2vw, 1.25rem)",
@@ -70,45 +68,23 @@ function Header() {
             </Typography>
           </Link>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              justifyContent: "flex-end",
+            }}
+          >
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              aria-label="open drawer"
+              onClick={toggleDrawer(true)}
               color="inherit"
-            ></IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography
-                    sx={{
-                      textAlign: "center",
-                      fontSize: "clamp(1rem, 2.5vw, 2rem)",
-                    }}
-                  >
-                    {page}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <MenuIcon />
+            </IconButton>
           </Box>
+
           <Box
             sx={{
               flexGrow: 1,
@@ -120,7 +96,6 @@ function Header() {
             {pages.map((page) => (
               <Link href={`/${page}`} key={page} passHref>
                 <Button
-                  onClick={handleCloseNavMenu}
                   sx={{
                     my: 2,
                     fontSize: "18px",
@@ -137,6 +112,54 @@ function Header() {
           </Box>
         </Toolbar>
       </Container>
+
+      {/* 사이드바 (Drawer) 컴포넌트 */}
+      <Drawer
+        anchor="right"
+        open={isDrawerOpen}
+        onClose={toggleDrawer(false)}
+        PaperProps={{ sx: { width: "200px", backgroundColor: "#87CEEB" } }}
+      >
+        <Box
+          sx={{ width: 250 }}
+          role="presentation"
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
+        >
+          <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
+            <IconButton
+              onClick={toggleDrawer(false)}
+              sx={{ marginRight: "50px", color: "#ffffff" }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          <List>
+            {pages.map((page) => (
+              <ListItem key={page} disablePadding>
+                <Link
+                  href={`/${page}`}
+                  passHref
+                  style={{ textDecoration: "none", width: "100%" }}
+                >
+                  <ListItemButton
+                    sx={{
+                      "&:hover": {
+                        backgroundColor: "#ffffff",
+                      },
+                    }}
+                  >
+                    <ListItemText
+                      primary={page}
+                      sx={{ color: "text.primary" }}
+                    />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
     </AppBar>
   );
 }

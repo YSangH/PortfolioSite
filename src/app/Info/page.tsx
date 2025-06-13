@@ -43,7 +43,7 @@ export default function Info() {
           />
           <Card
             title="학력"
-            content={"오산대학교 \n 인터넷정보처리과"}
+            content={"오산대학교(졸업) \n 인터넷정보처리과"}
             imageSrc="/assets/education.jpg"
           />
         </Container>
