@@ -70,10 +70,11 @@ export default function Form() {
           </Typography>
           <form onSubmit={handleSubmit}>
             <TextField
-              placeholder={email}
+              label="이메일 주소"
+              placeholder="Mailname@example.com"
               fullWidth
               margin="normal"
-              disabled // 이메일 입력란을 비활성화
+              // disabled // 이메일 입력란을 비활성화
               InputProps={{
                 style: {
                   fontWeight: "bold",
@@ -83,6 +84,7 @@ export default function Form() {
             />
             <TextField
               label="제목"
+              placeholder="제목을 적어주세요"
               fullWidth
               margin="normal"
               value={subject}
@@ -93,6 +95,7 @@ export default function Form() {
               label="내용"
               fullWidth
               multiline
+              placeholder="내용을 적어주세요"
               rows={6}
               margin="normal"
               value={message}

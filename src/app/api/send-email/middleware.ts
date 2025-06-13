@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const LIMIT = 5; // 최대 요청 횟수
+const LIMIT = 3; // 최대 요청 횟수
 const WINDOW_MS = 15 * 60 * 1000; // 15분 (밀리초)
 const requestCounts = new Map<string, { count: number; startTime: number }>();
 
