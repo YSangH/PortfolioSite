@@ -3,6 +3,15 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import { Box, Container } from "@mui/material";
 
+export const metadata = {
+  viewport: {
+    width: "device-width",
+    initialScale: 1.0,
+    maximumScale: 1.0,
+    userScalable: false,
+  },
+};
+
 export default function Footer() {
   return (
     <>

@@ -11,6 +11,15 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
+export const metadata = {
+  viewport: {
+    width: "device-width",
+    initialScale: 1.0,
+    maximumScale: 1.0,
+    userScalable: false,
+  },
+};
+
 const pages = ["Info", "Introduce", "Skills", "Portfolio", "Contact"];
 
 function Header() {
