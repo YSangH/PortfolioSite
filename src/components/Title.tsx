@@ -16,21 +16,26 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: "3vh",
-        minHeight: "12vh",
+        marginTop: { xs: "2vh", sm: "3vh" },
+        minHeight: { xs: "8vh", sm: "10vh", md: "12vh" },
+        padding: { xs: "0 16px", sm: "0 24px" },
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Box sx={{ display: "flex", alignItems: "center", flexWrap: "nowrap" }}>
         {/* 왼쪽 구체 */}
         {colors.map((color, index) => (
           <Box
             key={`left-${index}`}
             sx={{
-              width: 24,
-              height: 24,
+              width: { xs: 16, sm: 20, md: 24 },
+              height: { xs: 16, sm: 20, md: 24 },
               borderRadius: "50%",
               backgroundColor: color,
-              margin: index === 0 ? "0 16px 0 15px" : "0 15px",
+              margin: {
+                xs: index === 0 ? "0 8px 0 4px" : "0 4px",
+                sm: index === 0 ? "0 12px 0 8px" : "0 8px",
+                md: index === 0 ? "0 16px 0 15px" : "0 15px",
+              },
               animation: `fadeIn 1s ease-in-out ${
                 (colors.length - 1 - index) * 0.3
               }s forwards`,
@@ -54,9 +59,23 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
           variant="h5"
           sx={{
             fontWeight: "bold",
-            margin: "0 16px",
+            margin: {
+              xs: "0 8px",
+              sm: "0 12px",
+              md: "0 16px",
+            },
             color: "black",
-            fontSize: "60px",
+            fontSize: {
+              xs: "24px",
+              sm: "36px",
+              md: "48px",
+              lg: "60px",
+            },
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            maxWidth: { xs: "200px", sm: "300px", md: "400px", lg: "none" },
             animation: "trackingIn 1s ease-in-out forwards",
             "@keyframes trackingIn": {
               "0%": {
@@ -80,11 +99,15 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
           <Box
             key={`right-${index}`}
             sx={{
-              width: 24,
-              height: 24,
+              width: { xs: 16, sm: 20, md: 24 },
+              height: { xs: 16, sm: 20, md: 24 },
               borderRadius: "50%",
               backgroundColor: color,
-              margin: "0 15px",
+              margin: {
+                xs: "0 4px",
+                sm: "0 8px",
+                md: "0 15px",
+              },
               animation: `fadeIn 1s ease-in-out ${index * 0.6}s forwards`,
               animationDelay: "1s",
               opacity: 0,

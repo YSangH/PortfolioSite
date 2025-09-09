@@ -3,95 +3,56 @@ import Header from "@/components/Header";
 import SkillBadge from "@/components/SkillBadge";
 import Title from "@/components/Title";
 import { Box, Container } from "@mui/material";
+import { skills } from "@/data/skills";
+import { GRID_CONFIG } from "@/constants/animations";
 
-// Info에 해당하는 Page
+// 스타일 객체 분리
+const styles = {
+  pageContainer: {
+    height: "65vh",
+  },
+  skillsContainer: {
+    margin: "0px auto",
+    padding: {
+      xs: 2,
+      sm: 3,
+      md: 4,
+    },
+    display: "grid",
+    alignItems: "center",
+    justifyContent: "center",
+    gridTemplateColumns: {
+      xs: `repeat(${GRID_CONFIG.COLUMNS.MOBILE}, 1fr)`,
+      sm: `repeat(${GRID_CONFIG.COLUMNS.TABLET}, 1fr)`,
+      md: `repeat(${GRID_CONFIG.COLUMNS.DESKTOP}, 1fr)`,
+    },
+    rowGap: GRID_CONFIG.GAP.ROW,
+    columnGap: GRID_CONFIG.GAP.COLUMN,
+    minHeight: "400px",
+  },
+} as const;
+
 export default function Skills() {
   return (
     <div>
       <Header />
       <Title titleText="Skills" />
+      
       {/* 페이지 전체 영역 */}
-      <Box
-        sx={{
-          height: "65vh",
-        }}
-      >
+      <Box sx={styles.pageContainer}>
         {/* 스킬 뱃지 영역 */}
-        <Container
-          disableGutters
-          sx={{
-            margin: "0px, 237px",
-            padding: 4,
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 3fr)", // 4열 3행 그리드
-            rowGap: "40px", // 카드 가로간 간격
-            columnGap: "40px", // 카드 세로간 간격
-            justifyContent: "center", // 중앙 정렬
-            alignItems: "center", // 세로 정렬
-          }}
-        >
-          <SkillBadge
-            title="HTML5"
-            skillImg="/assets/html5.png"
-            backgroundColor="#E44D26"
-          />
-          <SkillBadge
-            title="CSS3"
-            skillImg="/assets/css3.png"
-            backgroundColor="#1572B6"
-          />
-          <SkillBadge
-            title="JavaScript"
-            skillImg="/assets/js.png"
-            backgroundColor="#F7DF1E"
-          />
-          <SkillBadge
-            title="TypeScript"
-            skillImg="/assets/typescript.png"
-            backgroundColor="#007ACC"
-          />
-          <SkillBadge
-            title="React"
-            skillImg="/assets/react.png"
-            backgroundColor="#61DAFB"
-          />
-          <SkillBadge
-            title="Vite"
-            skillImg="/assets/vite.png"
-            backgroundColor="#646CFF"
-          />
-          <SkillBadge
-            title="Next.js"
-            skillImg="/assets/nextjs.png"
-            backgroundColor="#b0b0b0"
-          />
-          <SkillBadge
-            title="BootStrap"
-            skillImg="/assets/bootstrap.png"
-            backgroundColor="#007bff"
-          />
-          <SkillBadge
-            title="ElacticUI"
-            skillImg="/assets/elastic.png"
-            backgroundColor="#00B3A6"
-          />
-          <SkillBadge
-            title="MaterialUI"
-            skillImg="/assets/mui.png"
-            backgroundColor="#1976D2"
-          />
-          <SkillBadge
-            title="Firebase"
-            skillImg="/assets/firebase.png"
-            backgroundColor="#FFCA28"
-          />
-          <SkillBadge
-            title="Github"
-            skillImg="/assets/github.png"
-            backgroundColor="#586069"
-          />
+        <Container disableGutters sx={styles.skillsContainer}>
+          {skills.map((skill) => (
+            <SkillBadge
+              key={skill.id}
+              title={skill.title}
+              skillImg={skill.skillImg}
+              backgroundColor={skill.backgroundColor}
+            />
+          ))}
         </Container>
       </Box>
+      
       <Footer />
     </div>
   );
