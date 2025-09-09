@@ -21,8 +21,8 @@ const greetings = [
 ];
 
 export default function DashBoard() {
-  const [currentGreeting, setCurrentGreeting] = React.useState<string | null>(
-    null
+  const [currentGreeting, setCurrentGreeting] = React.useState<string>(
+    greetings[0] // 초기값을 첫 번째 인사말로 설정
   );
   const [animationEnded, setAnimationEnded] = React.useState(false);
   const [typedText, setTypedText] = React.useState("");
@@ -43,7 +43,7 @@ export default function DashBoard() {
           setCurrentGreeting(greetings[index]);
         }
       }, 200);
-    }, 600);
+    }, 100); // 초기 지연 시간을 600ms에서 100ms로 단축
 
     return () => {
       clearTimeout(initialTimeout);

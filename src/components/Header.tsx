@@ -110,17 +110,20 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   };
 
   const handleNavClick = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // 헤더 요소의 실제 높이를 동적으로 계산
-      const header = document.querySelector('header') || document.querySelector('[role="banner"]');
-      const headerHeight = header ? header.offsetHeight : 80;
-      const elementPosition = element.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
+    // 클라이언트 사이드에서만 실행
+    if (typeof window !== 'undefined') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // 헤더 요소의 실제 높이를 동적으로 계산
+        const header = document.querySelector('header') || document.querySelector('[role="banner"]');
+        const headerHeight = header ? header.offsetHeight : 80;
+        const elementPosition = element.offsetTop - headerHeight;
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
     }
     onClose(); // 드로어 닫기
   };
@@ -172,17 +175,20 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
   navigationItems,
 }) => {
   const handleNavClick = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // 헤더 요소의 실제 높이를 동적으로 계산
-      const header = document.querySelector('header') || document.querySelector('[role="banner"]');
-      const headerHeight = header ? header.offsetHeight : 80;
-      const elementPosition = element.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
+    // 클라이언트 사이드에서만 실행
+    if (typeof window !== 'undefined') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // 헤더 요소의 실제 높이를 동적으로 계산
+        const header = document.querySelector('header') || document.querySelector('[role="banner"]');
+        const headerHeight = header ? header.offsetHeight : 80;
+        const elementPosition = element.offsetTop - headerHeight;
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 

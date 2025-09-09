@@ -37,3 +37,29 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   overflow-y: scroll; /* 항상 스크롤바 표시하여 크기 변동 방지 */
 }
+
+/* 깜빡임 방지 */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 페이지 로드 시 깜빡임 방지 */
+html {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* 초기 로딩 상태 */
+html.loading {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* 컴포넌트 깜빡임 방지 */
+[data-component] {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

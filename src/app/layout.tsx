@@ -32,6 +32,17 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="64x64" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* 초기 로딩 시 깜빡임 방지 */
+            html, body {
+              scroll-behavior: auto !important;
+            }
+            body {
+              overflow-x: hidden;
+            }
+          `
+        }} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
