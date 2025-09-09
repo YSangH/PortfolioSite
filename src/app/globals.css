@@ -16,6 +16,21 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
+/* 새로 고침 시 맨 위로 스크롤 */
+html, body {
+  scroll-behavior: auto;
+}
+
+/* 페이지 로드 시 스크롤 위치를 맨 위로 설정 */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

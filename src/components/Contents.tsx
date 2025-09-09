@@ -40,6 +40,7 @@ export default function Contents({ titles, contents }: ContentProps) {
   const [isVisible, setIsVisible] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [modalContent, setModalContent] = useState<string[]>([]);
+  const [expanded, setExpanded] = useState<number | false>(false);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -94,9 +95,15 @@ export default function Contents({ titles, contents }: ContentProps) {
         return (
           <Accordion
             key={index}
+            expanded={expanded === index}
+            onChange={(_event, isExpanded) =>
+              setExpanded(isExpanded ? index : false)
+            }
             sx={{
               opacity: isVisible ? 1 : 0,
               animation: isVisible ? `${slideInTop} 0.8s ease-out` : "none",
+              zIndex: 1, // 다른 요소들 위에 표시되도록 설정
+              position: "relative", // z-index가 적용되도록 position 설정
             }}
           >
             <AccordionSummary

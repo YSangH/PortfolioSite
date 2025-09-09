@@ -1,15 +1,17 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import Contents from "@/components/Contents";
 import Title from "@/components/Title";
 import { Box, Container } from "@mui/material";
 
 export default function Introduce() {
   return (
-    <>
-      <Header />
-      <Title titleText="Introduce" />
-      <Box sx={{ height: "60vh" }}>
+    <div>
+      <Title titleText="Introduce" id="introduce-section" />
+      <Box sx={{ 
+        height: "75vh",
+        overflow: "hidden", // 아코디언이 다른 섹션에 영향을 주지 않도록 제한
+        position: "relative", // 자식 요소들의 positioning 기준점 설정
+        zIndex: 1, // 다른 섹션들 위에 표시
+      }}>
         <Container
           sx={{
             // display: "grid",
@@ -18,6 +20,8 @@ export default function Introduce() {
             alignItems: "center", // 세로 정렬
             marginTop: "5vh",
             paddingBottom: "20vh",
+            height: "100%", // 컨테이너가 부모의 전체 높이를 차지
+            overflow: "auto", // 필요시 스크롤 가능하도록 설정
           }}
         >
           <Contents
@@ -43,13 +47,14 @@ export default function Introduce() {
               //  직무 경험
               `[협업과 UI/UX를 중요시하는 주니어 개발자]
 
-              로고 공모전 참여와 제작을 하는 과정에서 
-              저는 사용자 피드백을 적극적으로 수렴하는 방법을 익혔고, 
-              그런 피드백이 실제로 디자인에 큰 영향을 미친다는 것을 경험했습니다.  
-              특히, 온라인 스토어를 운영하면서 상세페이지를 직접 제작 및 편집 경험을 하면서 
-              UI/UX 디자인에 대해 깊이 있게 다룰 기회가 많았습니다. 
-              웹 개발자 실무 양성과정 교육을 받으면서, 팀원들과 GitHub를 이용하여 
-              협업의 중요성을 깊고 넓게 이해하게 되었으며, 협업 능력 또한 발전시켜주었습니다.
+              로고 공모전 참여와 제작을 하는 과정에서
+              저는 사용자 피드백을 적극적으로 수렴하는 방법을 익혔고,
+              그런 피드백이 실제로 디자인에 큰 영향을 미친다는 것을 경험했습니다.
+              특히, 온라인 스토어를 운영하면서 상세페이지를 직접 제작 및 편집 경험을 하면서
+              UI/UX 디자인에 대해 깊이 있게 다룰 기회가 많았습니다.
+              웹 개발자 실무 양성과정 교육을 받으면서,
+              팀원들과 GitHub를 이용하여 협업의 중요성을 깊고 넓게 이해하게 되었으며,
+              협업 능력 또한 발전시켜주었습니다.
               그리고 아르바이트와 일용직을 경험하면서 소통의 중요성과 다양한 상황에 유연하게 대처를 할 수 있는 방법을 알게 되었습니다.`,
 
               //  성격의 장단점
@@ -88,13 +93,16 @@ export default function Introduce() {
                   훈련기간 : 2018-04-05 ~2018-10-17`,
                   `(스마트웹&콘텐츠개발) 자바(JAVA) 기반 풀스택(스프링,React) 웹개발자 실무 양성과정 A 
                   훈련기간 : 2024-03-18 ~2024-09-05`,
+                  `멋쟁이 사자처럼 부트캠프 프론트엔드 심화 플러스 5기
+                  훈련기간 : 2025-06-17 ~ 2025-08-21`,
                   `스마트스토어 운영(엔코체어)
                   주 업무 : 상세페이지 편집, 제품 이미지 촬영, 고객 상담 문의
                   기간 : 2021.03 ~ 2024.03`,
                   `로고 공모전 참여(라우드소싱)`,
                 ],
-                buttonText: ["", "", "이미지 보기", "이미지 보기"], // 버튼 텍스트
+                buttonText: ["", "", "", "이미지 보기", "이미지 보기"], // 버튼 텍스트
                 modalContent: [
+                  [],
                   [],
                   [],
                   ["/assets/onlinestore.png"],
@@ -119,7 +127,6 @@ export default function Introduce() {
           />
         </Container>
       </Box>
-      <Footer />
-    </>
+    </div>
   );
 }

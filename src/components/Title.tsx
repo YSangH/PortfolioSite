@@ -4,14 +4,16 @@ import { Box, Typography } from "@mui/material";
 // Props 타입 정의
 type TitleProps = {
   titleText: string; // 동적으로 전달할 텍스트
+  id?: string; // 선택적 ID prop
 };
 
-const Title: React.FC<TitleProps> = ({ titleText }) => {
+const Title: React.FC<TitleProps> = ({ titleText, id }) => {
   // 색상 배열
   const colors = ["#87CEEB", "#A3D9F7", "#B7E1F8", "#CCEBFC"].reverse();
 
   return (
     <Box
+      id={id}
       sx={{
         display: "flex",
         alignItems: "center",
@@ -27,8 +29,8 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
           <Box
             key={`left-${index}`}
             sx={{
-              width: { xs: 16, sm: 20, md: 24 },
-              height: { xs: 16, sm: 20, md: 24 },
+              width: { xs: 20, sm: 25, md: 30 },
+              height: { xs: 20, sm: 25, md: 30 },
               borderRadius: "50%",
               backgroundColor: color,
               margin: {
@@ -66,9 +68,9 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
             },
             color: "black",
             fontSize: {
-              xs: "24px",
-              sm: "36px",
-              md: "48px",
+              xs: "30px",
+              sm: "40px",
+              md: "50px",
               lg: "60px",
             },
             textAlign: "center",
@@ -99,8 +101,8 @@ const Title: React.FC<TitleProps> = ({ titleText }) => {
           <Box
             key={`right-${index}`}
             sx={{
-              width: { xs: 16, sm: 20, md: 24 },
-              height: { xs: 16, sm: 20, md: 24 },
+              width: { xs: 20, sm: 25, md: 30 },
+              height: { xs: 20, sm: 25, md: 30 },
               borderRadius: "50%",
               backgroundColor: color,
               margin: {

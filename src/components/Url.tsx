@@ -7,11 +7,12 @@ import Typography from "@mui/material/Typography";
 import { keyframes } from "@mui/system";
 import Button from "@mui/material/Button";
 import Link from "next/link";
+import { Box } from "@mui/material";
 
 // slide-in-top 애니메이션 정의
 const slideInTop = keyframes`
   from {
-    transform: translateY(-50%);
+    transform: translateY(-30px);
     opacity: 0;
   }
   to {
@@ -20,54 +21,91 @@ const slideInTop = keyframes`
   }
 `;
 
-interface InfoCardProps {
+// hover 애니메이션 정의
+const hoverScale = keyframes`
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+`;
+
+interface ContactCardProps {
   title: string;
   content: string;
   imageSrc: string;
   url: string;
+  description?: string;
 }
 
-export default function InfoCard({
+export default function ContactCard({
   title,
   content,
   imageSrc,
   url,
-}: InfoCardProps) {
+  description,
+}: ContactCardProps) {
   const [isVisible, setIsVisible] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(false);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 2400);
+    }, 100); // 애니메이션 지연 시간 단축
     return () => clearTimeout(timer);
   }, []);
+
+  const isExternalLink = url.startsWith("http");
 
   return (
     <Card
       sx={{
-        minWidth: 372,
-        height: 200,
-        animation: isVisible ? `${slideInTop} 0.8s ease-out` : `none`,
+        height: { xs: 180, sm: 200, md: 220 },
+        animation: isVisible ? `${slideInTop} 0.6s ease-out` : `none`,
         display: isVisible ? "flex" : "none",
+        flexDirection: { xs: "column", sm: "row" },
         alignItems: "center",
-        padding: 3,
-        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-        borderRadius: "15px",
+        padding: { xs: 2, sm: 3 },
+        boxShadow: isHovered 
+          ? "0 8px 25px rgba(0, 0, 0, 0.15)" 
+          : "0 4px 15px rgba(0, 0, 0, 0.1)",
+        borderRadius: "16px",
+        transition: "all 0.3s ease-in-out",
+        cursor: "pointer",
+        "&:hover": {
+          animation: `${hoverScale} 0.3s ease-in-out forwards`,
+          boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)",
+        },
+        backgroundColor: "background.paper",
+        border: "1px solid",
+        borderColor: "divider",
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* 아이콘 이미지 */}
-      <CardMedia
+      <Box
         sx={{
-          height: 50,
-          width: 50,
-          flexShrink: 0,
           display: "flex",
+          alignItems: "center",
           justifyContent: "center",
-          marginLeft: 1,
+          marginBottom: { xs: 2, sm: 0 },
+          marginRight: { xs: 0, sm: 2 },
         }}
-        image={imageSrc}
-        title="contactIcons"
-      />
+      >
+        <CardMedia
+          component="img"
+          sx={{
+            height: { xs: 40, sm: 50, md: 60 },
+            width: { xs: 40, sm: 50, md: 60 },
+            objectFit: "contain",
+            borderRadius: "8px",
+          }}
+          image={imageSrc}
+          alt={`${title} 아이콘`}
+        />
+      </Box>
 
       {/* 텍스트 + 버튼 영역 */}
       <CardContent
@@ -75,49 +113,91 @@ export default function InfoCard({
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center", // 모든 요소를 가운데 정렬
-          position: "relative", // 버튼을 아래로 밀기 위한 기준점
+          alignItems: "center",
+          textAlign: "center",
+          padding: { xs: "8px", sm: "16px" },
+          "&:last-child": {
+            paddingBottom: { xs: "8px", sm: "16px" },
+          },
         }}
       >
-        {/* 텍스트 컨테이너 (위쪽 고정) */}
+        {/* 제목 */}
         <Typography
-          gutterBottom
-          variant="h5"
+          variant="h6"
           sx={{
-            fontSize: "25px",
-            fontWeight: "bold",
-            textAlign: "center",
+            fontSize: { xs: "18px", sm: "20px", md: "22px" },
+            fontWeight: 700,
+            color: "text.primary",
+            marginBottom: 1,
+            lineHeight: 1.2,
           }}
         >
           {title}
         </Typography>
+
+        {/* 내용 */}
         <Typography
           variant="body2"
           sx={{
-            fontSize: "18px",
-            textAlign: "center",
+            fontSize: { xs: "14px", sm: "16px" },
             color: "text.secondary",
-            fontWeight: "bold",
+            fontWeight: 500,
+            marginBottom: 2,
+            lineHeight: 1.4,
+            wordBreak: "break-all",
+            maxWidth: "100%",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
           }}
         >
           {content}
         </Typography>
 
-        <Link href={url}>
-          <Button
+        {/* 설명 (있는 경우) */}
+        {description && (
+          <Typography
+            variant="caption"
             sx={{
-              position: "absolute",
-              bottom: -30, // 아래 여백 추가
-              right: -5,
-              width: "100px",
-              height: "35px",
-              backgroundColor: "#87CEEB",
-              color: "#fff",
-              fontWeight: "500",
-              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+              fontSize: "12px",
+              color: "text.disabled",
+              marginBottom: 2,
+              fontStyle: "italic",
             }}
           >
-            <Typography>More</Typography>
+            {description}
+          </Typography>
+        )}
+
+        {/* 버튼 */}
+        <Link 
+          href={url} 
+          passHref
+          style={{ textDecoration: "none" }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              width: { xs: "80px", sm: "100px" },
+              height: { xs: "32px", sm: "36px" },
+              backgroundColor: "#87CEEB",
+              color: "#fff",
+              fontWeight: 600,
+              fontSize: { xs: "12px", sm: "14px" },
+              borderRadius: "20px",
+              textTransform: "none",
+              boxShadow: "0 2px 8px rgba(135, 206, 235, 0.3)",
+              transition: "all 0.2s ease-in-out",
+              "&:hover": {
+                backgroundColor: "#70B8E8",
+                boxShadow: "0 4px 12px rgba(135, 206, 235, 0.4)",
+                transform: "translateY(-1px)",
+              },
+            }}
+          >
+            {isExternalLink ? "이동" : "문의"}
           </Button>
         </Link>
       </CardContent>

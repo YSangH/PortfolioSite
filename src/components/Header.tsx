@@ -16,8 +16,192 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
-const pages = ["Info", "Introduce", "Skills", "Portfolio", "Contact"];
+// Types
+interface NavigationItem {
+  name: string;
+  href: string;
+}
 
+interface MobileDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  navigationItems: NavigationItem[];
+}
+
+interface DesktopNavigationProps {
+  navigationItems: NavigationItem[];
+}
+
+// Constants
+const NAVIGATION_ITEMS: NavigationItem[] = [
+  { name: "Info", href: "#info-section" },
+  { name: "Introduce", href: "#introduce-section" },
+  { name: "Skills", href: "#skills-section" },
+  { name: "Portfolio", href: "#portfolio-section" },
+  { name: "Contact", href: "#contact-section" },
+];
+
+const HEADER_STYLES = {
+  appBar: {
+    backgroundColor: "#87CEEB",
+    minHeight: "5vh",
+  },
+  toolbar: {
+    display: "flex",
+    alignItems: "center",
+    minHeight: "5vh",
+  },
+  logo: {
+    mr: 2,
+    marginLeft: "20px",
+    display: { xs: "flex", md: "flex" },
+    fontFamily: "monospace",
+    fontWeight: 700,
+    fontSize: "clamp(1rem, 2vw, 1.25rem)",
+    letterSpacing: ".3rem",
+    color: "inherit",
+    textDecoration: "none",
+  },
+  mobileMenuButton: {
+    flexGrow: 1,
+    display: { xs: "flex", md: "none" },
+    justifyContent: "flex-end",
+  },
+  desktopNavigation: {
+    flexGrow: 1,
+    display: { xs: "none", md: "flex" },
+    justifyContent: "flex-end",
+    marginRight: "10px",
+  },
+  navButton: {
+    my: 2,
+    fontSize: "18px",
+    fontWeight: "bold",
+    color: "white",
+    display: "block",
+    margin: "0px 20px 0px 20px",
+  },
+  drawer: {
+    width: "200px",
+    backgroundColor: "#87CEEB",
+  },
+  drawerContent: {
+    width: 250,
+  },
+  closeButton: {
+    marginRight: "50px",
+    color: "#ffffff",
+  },
+  drawerItem: {
+    "&:hover": {
+      backgroundColor: "#ffffff",
+    },
+  },
+} as const;
+
+// Mobile Drawer Component
+const MobileDrawer: React.FC<MobileDrawerProps> = ({
+  isOpen,
+  onClose,
+  navigationItems,
+}) => {
+  const handleDrawerClose = () => {
+    onClose();
+  };
+
+  const handleNavClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // 헤더 요소의 실제 높이를 동적으로 계산
+      const header = document.querySelector('header') || document.querySelector('[role="banner"]');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+    onClose(); // 드로어 닫기
+  };
+
+  return (
+    <Drawer
+      anchor="right"
+      open={isOpen}
+      onClose={handleDrawerClose}
+      PaperProps={{ sx: HEADER_STYLES.drawer }}
+    >
+      <Box
+        sx={HEADER_STYLES.drawerContent}
+        role="presentation"
+        onClick={handleDrawerClose}
+        onKeyDown={handleDrawerClose}
+      >
+        <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
+          <IconButton
+            onClick={handleDrawerClose}
+            sx={HEADER_STYLES.closeButton}
+            aria-label="close navigation menu"
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <List>
+          {navigationItems.map((item) => (
+            <ListItem key={item.name} disablePadding>
+              <ListItemButton 
+                sx={HEADER_STYLES.drawerItem}
+                onClick={() => handleNavClick(item.href.replace('#', ''))}
+              >
+                <ListItemText
+                  primary={item.name}
+                  sx={{ color: "text.primary" }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    </Drawer>
+  );
+};
+
+// Desktop Navigation Component
+const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
+  navigationItems,
+}) => {
+  const handleNavClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // 헤더 요소의 실제 높이를 동적으로 계산
+      const header = document.querySelector('header') || document.querySelector('[role="banner"]');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <Box sx={HEADER_STYLES.desktopNavigation}>
+      {navigationItems.map((item) => (
+        <Button 
+          key={item.name}
+          sx={HEADER_STYLES.navButton}
+          onClick={() => handleNavClick(item.href.replace('#', ''))}
+        >
+          {item.name}
+        </Button>
+      ))}
+    </Box>
+  );
+};
+
+// Main Header Component
 function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
@@ -34,50 +218,21 @@ function Header() {
     };
 
   return (
-    <AppBar
-      position="static"
-      sx={{ backgroundColor: "#87CEEB", minHeight: "10vh" }}
-    >
+    <AppBar position="sticky" sx={{ ...HEADER_STYLES.appBar, top: 0, zIndex: 11 }}>
       <Container maxWidth="xl">
-        <Toolbar
-          disableGutters
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            paddingTop: "2.5vh",
-            minHeight: "10vh",
-          }}
-        >
+        <Toolbar disableGutters sx={HEADER_STYLES.toolbar}>
+          {/* Logo */}
           <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                mr: 2,
-                marginLeft: "20px",
-                display: { xs: "flex", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                fontSize: "clamp(1rem, 2vw, 1.25rem)",
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
+            <Typography variant="h6" noWrap sx={HEADER_STYLES.logo}>
               Yu Sang Hyeon
             </Typography>
           </Link>
 
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "flex", md: "none" },
-              justifyContent: "flex-end",
-            }}
-          >
+          {/* Mobile Menu Button */}
+          <Box sx={HEADER_STYLES.mobileMenuButton}>
             <IconButton
               size="large"
-              aria-label="open drawer"
+              aria-label="open navigation menu"
               onClick={toggleDrawer(true)}
               color="inherit"
             >
@@ -85,81 +240,17 @@ function Header() {
             </IconButton>
           </Box>
 
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "flex-end",
-              marginRight: "10px",
-            }}
-          >
-            {pages.map((page) => (
-              <Link href={`/${page}`} key={page} passHref>
-                <Button
-                  sx={{
-                    my: 2,
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    color: "white",
-                    display: "block",
-                    margin: "0px 20px 0px 20px",
-                  }}
-                >
-                  {page}
-                </Button>
-              </Link>
-            ))}
-          </Box>
+          {/* Desktop Navigation */}
+          <DesktopNavigation navigationItems={NAVIGATION_ITEMS} />
         </Toolbar>
       </Container>
 
-      {/* 사이드바 (Drawer) 컴포넌트 */}
-      <Drawer
-        anchor="right"
-        open={isDrawerOpen}
-        onClose={toggleDrawer(false)}
-        PaperProps={{ sx: { width: "200px", backgroundColor: "#87CEEB" } }}
-      >
-        <Box
-          sx={{ width: 250 }}
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-        >
-          <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
-            <IconButton
-              onClick={toggleDrawer(false)}
-              sx={{ marginRight: "50px", color: "#ffffff" }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </Box>
-          <List>
-            {pages.map((page) => (
-              <ListItem key={page} disablePadding>
-                <Link
-                  href={`/${page}`}
-                  passHref
-                  style={{ textDecoration: "none", width: "100%" }}
-                >
-                  <ListItemButton
-                    sx={{
-                      "&:hover": {
-                        backgroundColor: "#ffffff",
-                      },
-                    }}
-                  >
-                    <ListItemText
-                      primary={page}
-                      sx={{ color: "text.primary" }}
-                    />
-                  </ListItemButton>
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-      </Drawer>
+      {/* Mobile Drawer */}
+      <MobileDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        navigationItems={NAVIGATION_ITEMS}
+      />
     </AppBar>
   );
 }
