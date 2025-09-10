@@ -110,7 +110,6 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   };
 
   const handleNavClick = (sectionId: string) => {
-    // 클라이언트 사이드에서만 실행
     if (typeof window !== 'undefined') {
       const element = document.getElementById(sectionId);
       if (element) {

@@ -59,31 +59,36 @@ export default function ContactCard({
   const isExternalLink = url.startsWith("http");
 
   return (
-    <Card
-      sx={{
-        height: { xs: 180, sm: 200, md: 220 },
-        animation: isVisible ? `${slideInTop} 0.6s ease-out` : `none`,
-        display: isVisible ? "flex" : "none",
-        flexDirection: { xs: "column", sm: "row" },
-        alignItems: "center",
-        padding: { xs: 2, sm: 3 },
-        boxShadow: isHovered 
-          ? "0 8px 25px rgba(0, 0, 0, 0.15)" 
-          : "0 4px 15px rgba(0, 0, 0, 0.1)",
-        borderRadius: "16px",
-        transition: "all 0.3s ease-in-out",
-        cursor: "pointer",
-        "&:hover": {
-          animation: `${hoverScale} 0.3s ease-in-out forwards`,
-          boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)",
-        },
-        backgroundColor: "background.paper",
-        border: "1px solid",
-        borderColor: "divider",
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <Link 
+      href={url} 
+      passHref
+      style={{ textDecoration: "none" }}
     >
+      <Card
+        sx={{
+          height: { xs: 180, sm: 200, md: 220 },
+          animation: isVisible ? `${slideInTop} 0.6s ease-out` : `none`,
+          display: isVisible ? "flex" : "none",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
+          padding: { xs: 2, sm: 3 },
+          boxShadow: isHovered 
+            ? "0 8px 25px rgba(0, 0, 0, 0.15)" 
+            : "0 4px 15px rgba(0, 0, 0, 0.1)",
+          borderRadius: "16px",
+          transition: "all 0.3s ease-in-out",
+          cursor: "pointer",
+          "&:hover": {
+            animation: `${hoverScale} 0.3s ease-in-out forwards`,
+            boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)",
+          },
+          backgroundColor: "background.paper",
+          border: "1px solid",
+          borderColor: "divider",
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
       {/* 아이콘 이미지 */}
       <Box
         sx={{
@@ -171,36 +176,20 @@ export default function ContactCard({
           </Typography>
         )}
 
-        {/* 버튼 */}
-        <Link 
-          href={url} 
-          passHref
-          style={{ textDecoration: "none" }}
+        {/* 클릭 안내 텍스트 */}
+        <Typography
+          variant="caption"
+          sx={{
+            fontSize: "12px",
+            color: "#87CEEB",
+            fontWeight: 600,
+            fontStyle: "italic",
+          }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              width: { xs: "80px", sm: "100px" },
-              height: { xs: "32px", sm: "36px" },
-              backgroundColor: "#87CEEB",
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: { xs: "12px", sm: "14px" },
-              borderRadius: "20px",
-              textTransform: "none",
-              boxShadow: "0 2px 8px rgba(135, 206, 235, 0.3)",
-              transition: "all 0.2s ease-in-out",
-              "&:hover": {
-                backgroundColor: "#70B8E8",
-                boxShadow: "0 4px 12px rgba(135, 206, 235, 0.4)",
-                transform: "translateY(-1px)",
-              },
-            }}
-          >
-            {isExternalLink ? "이동" : "문의"}
-          </Button>
-        </Link>
+          {isExternalLink ? "클릭하여 이동" : "클릭하여 문의"}
+        </Typography>
       </CardContent>
     </Card>
+    </Link>
   );
 }

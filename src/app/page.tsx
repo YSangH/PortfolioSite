@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 // 클라이언트 사이드에서만 렌더링되도록 dynamic import 사용
