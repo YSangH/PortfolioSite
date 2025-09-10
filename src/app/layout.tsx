@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "YSH's Site",
   description: "유상현의 사이트 입니다.",
+  icons: {
+    icon: "assets/favicon.ico",
+    shortcut: "assets/favicon.ico",
+    apple: "assets/favicon.ico",
+  },
   viewport: {
     width: "device-width",
     initialScale: 1.0,
@@ -31,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="64x64" />
         <style dangerouslySetInnerHTML={{
           __html: `
             /* 초기 로딩 시 깜빡임 방지 */
