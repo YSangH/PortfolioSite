@@ -13,6 +13,7 @@ export default function Introduce() {
         zIndex: 1, // 다른 섹션들 위에 표시
       }}>
         <Container
+          className="scrollable-hidden"
           sx={{
             // display: "grid",
             // gridTemplateColumns: "repeat(1, 4fr)",

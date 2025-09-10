@@ -61,3 +61,27 @@ html.loading {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* 스크롤바 숨기기 (모든 브라우저 지원) */
+.hide-scrollbar {
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE and Edge */
+  -ms-overflow-style: none;
+}
+
+/* Webkit 기반 브라우저 (Chrome, Safari, Edge) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 스크롤 기능은 유지하면서 스크롤바만 숨기기 */
+.scrollable-hidden {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollable-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
