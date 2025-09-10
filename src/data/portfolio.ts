@@ -20,17 +20,18 @@ export const portfolioProjects: Project[] = [
   {
     id: "citychat",
     name: "CityChat",
-    description: "3인 제작 실용적이고 신뢰도 높은 풍부한 도시 정보를 제공하는 사이트입니다.",
-    mainImage: "",
+    description:
+      "3인 제작 실용적이고 신뢰도 높은 풍부한 도시 정보를 제공하는 사이트입니다.",
+    mainImage: "assets/citychat-main 1.png",
     githubLink: "https://github.com/FRONT-END-BOOTCAMP-PLUS-5/citychat",
     images: {
-      image1: "",
-      image2: "",
+      image1: "/assets/citychat-main 2.png",
+      image2: "/assets/region.png",
     },
     subtitles: {
-      subtitle1: "메인 페이지",
-      subtitle2: "",
-      subtitle3: "",
+      subtitle1: "메인 페이지 (1)",
+      subtitle2: "메인 페이지 (2)",
+      subtitle3: "지역 별 페이지",
     },
   },
   {
